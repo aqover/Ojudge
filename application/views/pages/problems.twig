@@ -1,0 +1,79 @@
+{#
+ # Sharif Judge
+ # file: assignments.twig
+ # author: Mohammad Javad Naderi <mjnaderi@gmail.com>
+ #}
+{% set selected = 'problems' %}
+{% extends 'templates/base.twig' %}
+{% block icon %}fa-folder-open{% endblock %}
+{% block title %}Problems{% endblock %}
+{% block head_title %}Problems{% endblock %}
+
+
+
+{% block title_menu %}
+{% if user.level >= 2 %}
+<span class="title_menu_item"><a href="{{ site_url('problems/add') }}"><i class="fa fa-plus color8"></i> Add Problem</a></span>
+{% endif %}
+{% endblock %}
+
+
+
+{% block main_content %}
+{% set msgclasses = {'success': 'shj_g', 'notice': 'shj_o', 'error': 'shj_r'} %}
+{% for message in messages %}
+	<p class="{{ msgclasses[message.type] }}">{{ message.text }}</p>
+{% endfor %}
+
+{% if all_problems|length == 0 %}
+	<p style="text-align: center;">Nothing to show...</p>
+{% else %}
+<br/>
+<table class="sharif_table">
+<thead>
+<tr>
+	{% if user.level >= 2 %}
+	<th>Id</th>
+	{% endif %}
+	<th>Name</th>
+	<th>Submissions</th>
+	<th>Last Submission</th>
+	{% if user.level >= 2 %}
+	<th>Actions</th>
+	{% endif %}
+</tr>
+</thead>
+{% for item in all_problems %}
+	{% if item.open > 0 or user.level > 0 %}
+	<tr>
+		{% if user.level >= 2 %}
+		<td>{{ item.id }}</td>
+		{% endif %}
+		<td><a href="{{ site_url('problems/'~item.id) }}">{{ item.name }}</a></td>
+		<td><a href="{{ site_url('scoreboard/problem/'~item.id) }}">{{ item.total_submits }} submission{{ item.total_submits != 1 ? 's' }}</a></td>
+		<td>
+			{% if item.total_submits == 0 %}
+				<span style="color: red;">No Submissions</span>
+			{% else %}
+				{{ item.last_submissions }}
+			{% endif %}
+		</td>
+		{% if user.level >= 2 %}
+		<td>
+			{% if user.level >= 2 %}
+				<a href="{{ site_url('moss/'~item.id) }}"><i title="Detect Similar Codes" class="fa fa-shield fa-lg color7"></i></a>
+			{% endif %}
+			{% if user.level >= 2 %}
+				<a href="{{ site_url('problems/edit_problem/'~item.id) }}"><i title="Edit" class="fa fa-pencil fa-lg color3"></i></a>
+			{% endif %}
+			{% if user.level >= 2 %}
+				<a href="{{ site_url('problems/delete/'~item.id) }}"><i title="Delete" class="fa fa-times fa-lg color1"></i></a>
+			{% endif %}
+		</td>
+		{% endif %}
+	</tr>
+	{% endif %}
+{% endfor %}
+</table>
+{% endif %}
+{% endblock %}  {# main_content #}

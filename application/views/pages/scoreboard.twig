@@ -1,0 +1,23 @@
+{#
+ # Sharif Judge
+ # file: scoreboard.twig
+ # author: Mohammad Javad Naderi <mjnaderi@gmail.com>
+ #}
+{% set selected = 'scoreboard' %}
+{% extends 'templates/base.twig' %}
+{% block icon %}fa-star{% endblock %}
+{% block title %}Scoreboard{% endblock %}
+{% block  title_menu %}
+{%  if user.level >= 2 %}
+<span class="title_menu_item"><a href="{{ site_url("scoreboard/overscore") }}">Overscore</a></span>
+<span class="title_menu_item"><a href="{{ site_url("scoreboard/download_excel") }}">Excel Overscore</a></span>
+<span class="title_menu_item"><a href="{{ site_url("scoreboard/update") }}">Update</a></span>
+{% endif %}
+{% endblock %}
+{% block head_title %}Scoreboard{% endblock %}
+
+{% block main_content %}
+<a dir="auto" href="{{ site_url("problems/#{problem.id}") }}">{{ problem.name }}</a><br>
+<p></p>
+{{ scoreboard|raw }}
+{% endblock %} {# main_content #}

@@ -1,0 +1,54 @@
+{#
+ # Sharif Judge
+ # file: scoreboard_table_admin.twig
+ # author: Pongsathorn Kerdphol <bambi_elephant56@gmail.com>
+ #}
+{% spaceless %}
+<table class="sharif_table">
+
+<thead>
+	<tr>
+		<th>#</th>
+		<th>Username</th>
+		<th>Name</th>
+		<th>Total Score</th>
+		<th>Total Submissions</th>
+		<th>Last Submissions</th>
+		<th>Problem name</th>
+		<th>Score</th>
+		<th>Last submissions</th>
+		<th>Count</th>
+	</tr>
+</thead>
+
+{% for sc_username in scoreboard.username %}
+	<tr>
+		<td rowspan="{{ count }}">{{ loop.index }}</td>
+		<td rowspan="{{ count }}">{{ sc_username }}</td>
+		<td rowspan="{{ count }}">{{ names[sc_username] }}</td>
+		<td rowspan="{{ count }}">{{ scoreboard['total_score'][loop.index0] }}</td>
+		<td rowspan="{{ count }}">{{ scoreboard['total_submissions'][loop.index0] }}</td>
+		<td rowspan="{{ count }}">{{ scoreboard['last_submissions'][loop.index0] }}</td>
+		{% for problem in all_problems %}
+		{% if loop.index > 1 %}
+			</tr><tr>
+		{% endif %}
+		<td>{{ problem.name }}</td>
+		{% if problems[sc_username][problem.id].score is defined %}
+			<td>{{ problems[sc_username][problem.id].score }}</td>
+			<td>{{ problems[sc_username][problem.id].last_submissions }}</td>
+			<td>{{ problems[sc_username][problem.id].submis_count }}</td>
+		{% else %}
+			<td colspan="3" style="background-color:#fd6864;color:#ffffff;">No Submissions</td>
+		{% endif %}
+		{% if loop.index > 1 %}
+			</tr>
+		{% endif %}
+		{% endfor %}
+	{% if loop.index == 1 %}
+	</tr>
+	{% endif %}
+{% endfor %}
+
+</table>
+{% endspaceless %}

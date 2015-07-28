@@ -1,0 +1,34 @@
+{#
+ # Sharif Judge
+ # file: scoreboard_table_user.twig
+ # author: Pongsathorn Kerdphol <bambi_elephant56@gmail.com>
+ #}
+{% spaceless %}
+<table class="sharif_table">
+
+<thead>
+	<tr>
+		<th width="5%">#</th>
+		<th width="40%">Problem Name</th>
+		<th width="15%">Score</th>
+		<th width="15%">Submissions</th>
+		<th width="25%">Last Submissions</th>
+	</tr>
+</thead>
+
+{% for problem in all_problems %}
+	<tr>
+		<td>{{ loop.index }}</td>
+		<td>{{ problem.name }}</td>
+		{% if problems[problem.id] is defined %}
+			<td>{{ problems[problem.id].score }}</td>
+			 <td>{{ problems[problem.id].submis_count }}</td>
+            <td>{{ problems[problem.id].last_submissions }}</td>
+		{% else %}
+			<td colspan="3" style="background-color:#fd6864;color:#ffffff;">No Submissions</td>
+		{% endif %}
+	</tr>
+{% endfor %}
+
+</table>
+{% endspaceless %}

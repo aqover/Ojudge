@@ -1,0 +1,34 @@
+{#
+ # Sharif Judge
+ # file: scoreboard_table_problem.twig
+ # author: Pongsathorn Kerdphol <bambi_elephant56@gmail.com>
+ #}
+{% spaceless %}
+<table class="sharif_table">
+
+<thead>
+	<tr>
+		<th width="5%">#</th>
+		<th width="40%">Name</th>
+		<th width="15%">Score</th>
+		<th width="15%">Submissions</th>
+		<th width="25%">Last Submissions</th>
+	</tr>
+</thead>
+
+{% for sc_username in scoreboard.username %}
+	<tr>
+		<td>{{ loop.index }}</td>
+		<td>{{ names[sc_username] }}</td>
+		{% if scoreboard['score'][loop.index0] is defined %}
+			<td>{{ scoreboard['score'][loop.index0] }}</td>
+			<td>{{ scoreboard['submis_count'][loop.index0] }}</td>
+			<td>{{ scoreboard['last_submissions'][loop.index0] }}</td>
+		{% else %}
+			<td colspan="3" style="background-color:#fd6864;color:#ffffff;">No Submissions</td>
+		{% endif %}
+	</tr>
+{% endfor %}
+
+</table>
+{% endspaceless %}

@@ -1,0 +1,30 @@
+{#
+ # Sharif Judge
+ # file: scoreboard_table_public.twig
+ # author: Pongsathorn Kerdphol <bambi_elephant56@gmail.com>
+ #}
+{% spaceless %}
+<table class="sharif_table">
+
+<thead>
+	<tr>
+		<th width="5%">#</th>
+		<th width="40%">Name</th>
+		<th width="15%">Total Score</th>
+		<th width="15%">Total Submissions</th>
+		<th width="25%">Last Submissions</th>
+	</tr>
+</thead>
+
+{% for sc_username in scoreboard.username %}
+	<tr>
+		<td>{{ loop.index }}</td>
+		<td>{{ names[sc_username] }}</td>
+		<td><a dir="auto" href="{{ site_url("scoreboard/user/#{sc_username}") }}">{{ scoreboard['total_score'][loop.index0] }}</a></td>
+		<td>{{ scoreboard['total_submissions'][loop.index0] }}</td>
+		<td>{{ scoreboard['last_submissions'][loop.index0] }}</td>
+	</tr>
+{% endfor %}
+
+</table>
+{% endspaceless %}
