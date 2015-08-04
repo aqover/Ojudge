@@ -115,8 +115,8 @@ class Install extends CI_Controller
 				'allowed_languages' => array('type' => 'TEXT', 'default' => ''),
 				'diff_cmd'          => array('type' => 'VARCHAR', 'constraint' => 20, 'default' => 'diff'),
 				'diff_arg'          => array('type' => 'VARCHAR', 'constraint' => 20, 'default' => '-bB'),
-				'open'				=> array('type' => 'TINYINT', 'constraint' => 1, 'default' => 0),
-				'javaexceptions'	=> array('type' => 'TINYINT', 'constraint' => 1),
+				'open'		    => array('type' => 'TINYINT', 'constraint' => 1, 'default' => 0),
+				'javaexceptions'    => array('type' => 'TINYINT', 'constraint' => 1),
 			);
 			$this->dbforge->add_field($fields);
 			$this->dbforge->add_key(array('id'));
@@ -129,8 +129,8 @@ class Install extends CI_Controller
 				'id'                => array('type' => 'SMALLINT', 'constraint' => 4, 'unsigned' => TRUE),
 				'name'              => array('type' => 'VARCHAR', 'constraint' => 50, 'default' => ''),
 				'total_submissions' => array('type' => 'INT', 'constraint' => 11),
-				'last_submissions'  => array('type' => 'DATAIME'),
-				'alreadys'			=> array('type' => 'text')
+				'last_submissions'  => array('type' => $DATETIME),
+				'alreadys'	    => array('type' => 'text')
 			);
 			$this->dbforge->add_field($fields);
 			$this->dbforge->add_key(array('id'));
@@ -188,7 +188,7 @@ class Install extends CI_Controller
 				array('shj_key' => 'timezone',               'shj_value' => 'Asia/Bangkok'),
 				array('shj_key' => 'tester_path',            'shj_value' => 'tester'),
 				array('shj_key' => 'problems_root',          'shj_value' => 'problems'),
-				array('shj_key' => 'pdf_root',          	 'shj_value' => 'pdf'),
+				array('shj_key' => 'pdf_root',         	     'shj_value' => 'pdf'),
 				array('shj_key' => 'file_size_limit',        'shj_value' => '50'),
 				array('shj_key' => 'output_size_limit',      'shj_value' => '1024'),
 				array('shj_key' => 'queue_is_working',       'shj_value' => '0'),
