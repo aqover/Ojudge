@@ -186,9 +186,9 @@ class Install extends CI_Controller
 			// insert default settings to table 'settings'
 			$result = $this->db->insert_batch('settings', array(
 				array('shj_key' => 'timezone',               'shj_value' => 'Asia/Bangkok'),
-				array('shj_key' => 'tester_path',            'shj_value' => 'tester'),
-				array('shj_key' => 'problems_root',          'shj_value' => 'problems'),
-				array('shj_key' => 'pdf_root',         	     'shj_value' => 'pdf'),
+				array('shj_key' => 'tester_path',            'shj_value' => '/var/www/html/Ojudge/tester'),
+				array('shj_key' => 'problems_root',          'shj_value' => '/var/www/html/Ojudge/problems'),
+				array('shj_key' => 'pdf_root',         	     'shj_value' => '/var/www/html/Ojudge/pdf'),
 				array('shj_key' => 'file_size_limit',        'shj_value' => '50'),
 				array('shj_key' => 'output_size_limit',      'shj_value' => '1024'),
 				array('shj_key' => 'queue_is_working',       'shj_value' => '0'),
